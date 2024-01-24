@@ -3,32 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KFC Youth Reatreat 2024</title>
+    <title>KFC YOUTH HANGOUT</title>
+    <style>
+        #notification {
+            display: none;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            position: fixed;
+            top: 0;
+            right: 0;
+        }
+    </style>
 </head>
 <body>
-    <h1>View your Pictures for Kakamega Forest</h1>
+    <h1>Scroll to see images</h1>
 
-    <h2>Images</h2>
-    <img src="Hacker.jpg" alt="Image 1">
-    <img src="Hacker1.jpg" alt="Image 2">
-   <img src="Binance.jpg" alt="Image 1">
-    <img src="BeyMax.jpg" alt="Image 2">
+    <h2>Photos</h2>
+    <ul>
+        <li><img src="gallery/photos/hacker.jpg" alt="Photo 1"></li>
+        <li><img src="gallery/photos/hacker1.jpg" alt="Photo 2"></li>
+    </ul>
 
     <h2>Videos</h2>
-    <video width="320" height="240" controls>
-        <source src="Travis Greene - Intentional -Official Music Video-.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    <video width="320" height="240" controls>
-        <source src="video2.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
+    <ul>
+        <li><video width="320" height="240" controls><source src="gallery/videos/video1.mp4" type="video/mp4">Your browser does not support the video tag.</video></li>
+        <li><video width="320" height="240" controls><source src="gallery/videos/video2.mp4" type="video/mp4">Your browser does not support the video tag.</video></li>
+    </ul>
 
-     <h2>File Upload</h2>
+    <h2>File Upload</h2>
     <form id="file-upload-form" enctype="multipart/form-data">
         <label for="file-input">Choose a file:</label>
         <input type="file" id="file-input" name="file" accept="image/*, video/*" required>
         <button type="button" onclick="uploadFile()">Upload</button>
+        <div id="upload-progress" style="display: none;">Uploading...</div>
     </form>
+
+    <div id="notification"></div>
+
+    <h2>File Download</h2>
+    <p>
+        <a href="gallery/photos/photo1.jpg" download>Download Photo 1</a>
+    </p>
+    <p>
+        <a href="gallery/photos/photo2.jpg" download>Download Photo 2</a>
+    </p>
+    <p>
+        <a href="gallery/videos/video1.mp4" download>Download Video 1</a>
+    </p>
+    <p>
+        <a href="gallery/videos/video2.mp4" download>Download Video 2</a>
+    </p>
+
+    <script>
+        function showNotification(message) {
+            var notification = document.getElementById('notification');
+            notification.innerText = message;
+            notification.style.display = 'block';
+
+            setTimeout(function() {
+                notification.style.display = 'none';
+            }, 3000); // Hide after 3 seconds
+        }
+
+        function uploadFile() {
+            var fileInput = document.getElementById('file-input');
+            var file = fileInput.files[0];
+
+            if (file) {
+                document.getElementById('upload-progress').style.display = 'block';
+
+                // Simulate an upload process
+                setTimeout(function() {
+                    showNotification('File uploaded successfully!');
+                    document.getElementById('upload-progress').style.display = 'none';
+                }, 2000); // Simulate a 2-second upload process
+            } else {
+                showNotification('Please choose a file before uploading.');
+            }
+        }
+    </script>
 </body>
 </html>
